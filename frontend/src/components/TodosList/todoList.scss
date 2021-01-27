@@ -1,0 +1,22 @@
+.badge {
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  font-weight: 800;
+  color: white;
+}
+
+.high {
+  background-color: #d90429;
+}
+
+.medium {
+  background-color: #ffb703;
+}
+
+.low {
+  background-color: #457b9d;
+}
+
+.completed {
+  background-color: #75caeb !important;
+}
