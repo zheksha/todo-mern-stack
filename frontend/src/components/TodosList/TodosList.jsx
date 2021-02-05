@@ -11,18 +11,19 @@ const TodosList = (props) => {
     if (!mounted.current) {
       const fetchData = async () => {
         const result = await axios("http://localhost:4000/todos/");
-        setTodoList([...result.data].reverse());
+        setTodoList([...result.data.data].reverse());
       };
       fetchData();
     } else {
       const fetchData = async () => {
         const result = await axios("http://localhost:4000/todos/");
-        setTodoList([...result.data].reverse());
+        setTodoList([...result.data.data].reverse());
       };
       fetchData();
     }
 
     return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       mounted = false;
     };
   }, []);

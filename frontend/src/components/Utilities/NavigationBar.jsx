@@ -11,7 +11,7 @@ export const NavigationBar = () => {
               <i className="fab fa-pied-piper-square mr-2" />
               <p className="text-bold m-0 p-0">
                 <small>
-                  <strong>ATA 1.0</strong>{" "}
+                  <strong>ATA 1.1</strong>{" "}
                 </small>{" "}
                 <span className="badge bg-info">
                   <small>

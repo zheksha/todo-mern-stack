@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import Moment from "react-moment";
 
 import { Input } from "../Utilities/Input";
 import { Select } from "../Utilities/Select";
@@ -11,6 +12,7 @@ export const TodoItem = (props) => {
     todo_description: "",
     todo_priority: "",
     todo_completed: "",
+    todo_created_at: "",
   });
 
   const [showToastWarning, setShowToastWarning] = useState(false);
@@ -18,14 +20,17 @@ export const TodoItem = (props) => {
 
   //get todo by id from mongo and assign to state
   useEffect(() => {
+    const id = props.match.params.id;
     const fetchCurrentTodo = async () => {
-      const result = await axios(
-        `http://localhost:4000/todos/${props.match.params.id}`
-      );
-      setCurrentTodo({ ...currentTodo, ...result.data });
+      try {
+        const result = await axios.get(`http://localhost:4000/todos/${id}`);
+        setCurrentTodo({ ...result.data.data });
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetchCurrentTodo();
-  }, []);
+  }, [props.match.params.id]);
 
   const onInputChange = (e) => {
     setCurrentTodo({ ...currentTodo, [e.target.name]: e.target.value });
@@ -49,8 +54,8 @@ export const TodoItem = (props) => {
     if (!currentTodo.todo_description || !currentTodo.todo_priority)
       return setShowToastWarning(true);
     axios
-      .post(
-        `http://localhost:4000/todos/update/${props.match.params.id}`,
+      .patch(
+        `http://localhost:4000/todos/${props.match.params.id}`,
         currentTodo
       )
       .then((res) => console.log(res.data));
@@ -83,6 +88,16 @@ export const TodoItem = (props) => {
   return (
     <div>
       {alertBlock}
+      <small>
+        Date created:
+        <br />
+        <strong>
+          <Moment format="YYYY/MM/DD h:mm a">
+            {currentTodo.todo_created_at}
+          </Moment>
+        </strong>
+      </small>
+      <hr />
       <Input
         name="todo_description"
         label="Description"
