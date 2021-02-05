@@ -11,13 +11,15 @@ const TodosList = (props) => {
     if (!mounted.current) {
       const fetchData = async () => {
         const result = await axios("http://localhost:4000/todos/");
-        setTodoList([...result.data.data].reverse());
+        // setTodoList([...result.data.data].reverse());
+        setTodoList([...result.data.data]);
       };
       fetchData();
     } else {
       const fetchData = async () => {
         const result = await axios("http://localhost:4000/todos/");
-        setTodoList([...result.data.data].reverse());
+        // setTodoList([...result.data.data].reverse());
+        setTodoList([...result.data.data]);
       };
       fetchData();
     }

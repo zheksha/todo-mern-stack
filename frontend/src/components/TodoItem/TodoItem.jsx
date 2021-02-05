@@ -79,7 +79,7 @@ export const TodoItem = (props) => {
   );
 
   const deleteTask = () => {
-    axios.delete(`http://localhost:4000/todos/delete/${props.match.params.id}`);
+    axios.delete(`http://localhost:4000/todos/${props.match.params.id}`);
     setTimeout(() => {
       props.history.push("/");
     }, 200);
@@ -88,7 +88,7 @@ export const TodoItem = (props) => {
   return (
     <div>
       {alertBlock}
-      <small>
+      <small className="text-dark">
         Date created:
         <br />
         <strong>

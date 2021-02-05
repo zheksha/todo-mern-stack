@@ -33,7 +33,7 @@ const CreateTodo = (props) => {
     }
 
     axios
-      .post("http://localhost:4000/todos/add", todo)
+      .post("http://localhost:4000/todos/", todo)
       .then((res) => console.log(res.data));
     setTodo({
       ...todo,
