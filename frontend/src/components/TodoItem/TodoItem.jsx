@@ -19,11 +19,16 @@ export const TodoItem = (props) => {
   const [showToastSuccess, setShowToastSuccess] = useState(false);
 
   //get todo by id from mongo and assign to state
+
   useEffect(() => {
     const id = props.match.params.id;
     const fetchCurrentTodo = async () => {
       try {
-        const result = await axios.get(`http://localhost:4000/todos/${id}`);
+        const result = await axios.get(`http://localhost:4000/todos/${id}`, {
+          headers: {
+            "x-auth-token": localStorage.getItem("token"),
+          },
+        });
         setCurrentTodo({ ...result.data.data });
       } catch (error) {
         console.error(error);
@@ -53,16 +58,20 @@ export const TodoItem = (props) => {
     e.preventDefault();
     if (!currentTodo.todo_description || !currentTodo.todo_priority)
       return setShowToastWarning(true);
-    axios
-      .patch(
-        `http://localhost:4000/todos/${props.match.params.id}`,
-        currentTodo
-      )
-      .then((res) => console.log(res.data));
+    axios.patch(
+      `http://localhost:4000/todos/${props.match.params.id}`,
+      currentTodo,
+      {
+        headers: {
+          "x-auth-token": localStorage.getItem("token"),
+        },
+      }
+    );
+
     setShowToastSuccess(true);
     setTimeout(() => {
-      props.history.push("/");
-    }, 1200);
+      props.history.push("/todos");
+    }, 1000);
   };
 
   const alertBlock = (
@@ -79,9 +88,13 @@ export const TodoItem = (props) => {
   );
 
   const deleteTask = () => {
-    axios.delete(`http://localhost:4000/todos/${props.match.params.id}`);
+    axios.delete(`http://localhost:4000/todos/${props.match.params.id}`, {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    });
     setTimeout(() => {
-      props.history.push("/");
+      props.history.push("/todos");
     }, 200);
   };
 

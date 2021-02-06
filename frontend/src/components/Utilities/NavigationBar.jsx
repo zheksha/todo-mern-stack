@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export const NavigationBar = () => {
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+  }, [token]);
+
+  const removeToken = () => {
+    localStorage.removeItem("token");
+    setToken("");
+  };
+
+  const signInBtn = (
+    <div>
+      <i className="fas fa-sign-in-alt mr-1" /> Sign In
+    </div>
+  );
+
+  const logOutBtn = (
+    <div>
+      Log out <i className=" ml-1 fas fa-sign-out-alt" />
+    </div>
+  );
   return (
     <div>
       <nav className="navbar navbar-expand-md navbar-dark bg-primary">
@@ -25,7 +47,7 @@ export const NavigationBar = () => {
           <div>
             <ul className="navbar-nav ml-auto">
               <li className="nav-item mr-3">
-                <Link className="nav-link" to="/">
+                <Link className="nav-link" to="/todos">
                   <i className="fas fa-tasks mr-2"></i>All my tasks
                   <span className="sr-only">(current)</span>
                 </Link>
@@ -38,6 +60,11 @@ export const NavigationBar = () => {
               <li className="nav-item mr-3">
                 <Link className="nav-link" to="about">
                   About
+                </Link>
+              </li>
+              <li className="nav-item mr-3">
+                <Link onClick={removeToken} className="nav-link" to="/login">
+                  {token ? logOutBtn : signInBtn}
                 </Link>
               </li>
             </ul>

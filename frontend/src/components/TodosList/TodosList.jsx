@@ -10,7 +10,11 @@ const TodosList = (props) => {
   useEffect(() => {
     if (!mounted.current) {
       const fetchData = async () => {
-        const result = await axios("http://localhost:4000/todos/");
+        const result = await axios.get("http://localhost:4000/todos/", {
+          headers: {
+            "x-auth-token": localStorage.getItem("token"),
+          },
+        });
         // setTodoList([...result.data.data].reverse());
         setTodoList([...result.data.data]);
       };
