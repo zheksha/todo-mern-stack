@@ -5,6 +5,7 @@ import About from "./components/About/About";
 import CreateTodo from "./components/CreateTodo/CreateTodo";
 import HomePage from "./components/Homepage/HomePage";
 import Login from "./components/Login/Login";
+import NewLogin from "./components/Login/NewLogin";
 import TodoItem from "./components/TodoItem/TodoItem";
 import TodosList from "./components/TodosList/TodosList";
 import { NavigationBar } from "./components/Utilities/NavigationBar";
@@ -26,6 +27,7 @@ function App() {
         <Route path="/edit/:id" component={TodoItem} />
         <Route path="/create" component={CreateTodo} />
         <Route path="/about" component={About} />
+        <Route path="/newlogin" component={NewLogin} />
       </div>
     </Router>
   );

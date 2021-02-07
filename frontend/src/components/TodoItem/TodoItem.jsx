@@ -74,13 +74,24 @@ export const TodoItem = (props) => {
     }, 1000);
   };
 
+  const alertText = {
+    warning: "Failed to update task, please make sure fieald are not empty",
+    success: "Successfully updated task!",
+  };
+
   const alertBlock = (
     <div>
       {showToastWarning ? (
-        <ToastWarning onClick={() => setShowToastWarning(false)} />
+        <ToastWarning
+          text={alertText.warning}
+          onClick={() => setShowToastWarning(false)}
+        />
       ) : null}
       {showToastSuccess ? (
-        <ToastSuccess onClick={() => setShowToastSuccess(false)} />
+        <ToastSuccess
+          text={alertText.success}
+          onClick={() => setShowToastSuccess(false)}
+        />
       ) : (
         ""
       )}

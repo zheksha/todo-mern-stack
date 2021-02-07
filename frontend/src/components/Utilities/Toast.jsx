@@ -15,7 +15,7 @@ export const ToastWarning = (props) => {
         <i className="fas fa-frown-open mr-1" />
         Oh snap!
       </strong>{" "}
-      Please input description and priority and try submitting again.
+      {props.text}.
     </div>
   );
 };
@@ -35,7 +35,7 @@ export const ToastSuccess = (props) => {
         <i className="mr-1 fas fa-thumbs-up" />
         Well done!
       </strong>{" "}
-      You successfully created a task.
+      {props.text}.
     </div>
   );
 };

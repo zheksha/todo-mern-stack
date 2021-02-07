@@ -49,13 +49,24 @@ const CreateTodo = (props) => {
     setShowToastWarning(false);
   };
 
+  const alertText = {
+    warning: "Something went wrong, please make sure all fields filled up",
+    success: "Successfully created new task.",
+  };
+
   const alertBlock = (
     <div>
       {showToastWarning ? (
-        <ToastWarning onClick={() => setShowToastWarning(false)} />
+        <ToastWarning
+          text={alertText.warning}
+          onClick={() => setShowToastWarning(false)}
+        />
       ) : null}
       {showToastSuccess ? (
-        <ToastSuccess onClick={() => setShowToastSuccess(false)} />
+        <ToastSuccess
+          text={alertText.success}
+          onClick={() => setShowToastSuccess(false)}
+        />
       ) : (
         ""
       )}

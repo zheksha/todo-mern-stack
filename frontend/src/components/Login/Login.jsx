@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import { Input } from "../Utilities/Input";
 import axios from "axios";
 import "./login.styles.scss";
+import { ToastSuccess, ToastWarning } from "../Utilities/Toast";
 
 const Login = (props) => {
   const [user, setUser] = useState({ email: "", password: "", name: "" });
+
+  const [showToastWarning, setShowToastWarning] = useState(false);
+  const [showToastSuccess, setShowToastSuccess] = useState(false);
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -19,19 +23,48 @@ const Login = (props) => {
       );
       console.log(data.token);
       localStorage.setItem("token", data.token);
-      window.location.replace("/todos");
+      setShowToastSuccess(true);
+      setTimeout(() => window.location.replace("/todos"), 500);
     } catch (error) {
       console.error(error);
+      setShowToastWarning(true);
     }
   };
 
+  const alertText = {
+    warning: "Failure",
+    success: "Success",
+  };
+
+  const alertBlock = (
+    <div>
+      {showToastWarning ? (
+        <ToastWarning
+          text={alertText.warning}
+          onClick={() => setShowToastWarning(false)}
+        />
+      ) : null}
+      {showToastSuccess ? (
+        <ToastSuccess
+          text={alertText.success}
+          onClick={() => setShowToastSuccess(false)}
+        />
+      ) : (
+        ""
+      )}
+    </div>
+  );
+
   return (
     <div>
+      {alertBlock}
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-8">
             <div className="card">
-              <div className="card-header bg-primary text-white">Register</div>
+              <div className="card-header bg-primary text-white">
+                <h4>Sign Up</h4>
+              </div>
               <div className="card-body">
                 <form action="" method="">
                   <div className="form-group row mb-0">
@@ -72,7 +105,7 @@ const Login = (props) => {
                       <i className="fas fa-sign-in-alt mr-1"></i> Log in
                     </button>
                     <button type="submit" className="btn btn-primary">
-                      <i className="fas fa-user-plus mr-1"></i> Sign up
+                      <i className="fas fa-user-plus mr-1"></i> Register
                     </button>
                   </div>
                 </form>
