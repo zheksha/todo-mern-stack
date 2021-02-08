@@ -7,8 +7,6 @@ import axios from "axios";
 
 const CreateTodo = (props) => {
   const { user } = jwt_decode(localStorage.getItem("token"));
-  console.log(user.id);
-
   const [todo, setTodo] = useState({
     todo_user: user.id,
     todo_description: "",

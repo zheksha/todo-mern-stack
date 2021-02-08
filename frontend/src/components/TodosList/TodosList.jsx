@@ -8,7 +8,6 @@ const TodosList = (props) => {
   const [todoList, setTodoList] = useState([]);
 
   const { user } = jwt_decode(localStorage.getItem("token"));
-  console.log(user.id);
 
   const config = {
     headers: {
