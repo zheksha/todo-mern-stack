@@ -41,7 +41,6 @@ exports.loginUser = async (req, res) => {
         const payload = {
           user: {
             id: user.id,
-            name: user.name,
           },
         };
         jwt.sign(
@@ -50,11 +49,7 @@ exports.loginUser = async (req, res) => {
           { expiresIn: 360000 },
           (error, token) => {
             if (error) throw error;
-            res.status(200).json({
-              status: "success",
-              token: token,
-              user: payload.user,
-            });
+            res.status(200).json({ status: "success", token: token, user });
           }
         );
       } else {

@@ -5,10 +5,9 @@ const auth = require("../middleware/auth");
 const router = express.Router();
 
 //Routes
-router
-  .route("/")
-  .post(auth, todoController.getAllTodos)
-  .post(auth, todoController.createTodo);
+router.route("/").post(auth, todoController.getAllTodos);
+
+router.route("/create").post(auth, todoController.createTodo);
 
 router
   .route("/:id")

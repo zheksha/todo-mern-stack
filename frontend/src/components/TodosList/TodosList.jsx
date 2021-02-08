@@ -1,26 +1,32 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
 import { Link } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 import "./todoList.scss";
 
 const TodosList = (props) => {
   const [todoList, setTodoList] = useState([]);
 
-  const decoded = jwt_decode(localStorage.getItem("token"));
-  console.log(decoded.user);
+  const { user } = jwt_decode(localStorage.getItem("token"));
+  console.log(user.id);
+
+  const config = {
+    headers: {
+      "x-auth-token": localStorage.getItem("token"),
+      "content-type": "application/json",
+    },
+    // body: JSON.stringify({ todo_user: "user.id" }),
+  };
+
   let mounted = useRef();
   useEffect(() => {
+    // console.log(config);
     if (!mounted.current) {
       const fetchData = async () => {
         const result = await axios.post(
           "http://localhost:4000/todos/",
-          decoded.user,
-          {
-            headers: {
-              "x-auth-token": localStorage.getItem("token"),
-            },
-          }
+          JSON.stringify({ todo_user: user.id }),
+          config
         );
         // setTodoList([...result.data.data].reverse());
         setTodoList([...result.data.data]);
@@ -28,14 +34,10 @@ const TodosList = (props) => {
       fetchData();
     } else {
       const fetchData = async () => {
-        const result = await axios(
+        const result = await axios.post(
           "http://localhost:4000/todos/",
-          decoded.user.id,
-          {
-            headers: {
-              "x-auth-token": localStorage.getItem("token"),
-            },
-          }
+          JSON.stringify({ todo_user: "user.id" }),
+          config
         );
         // setTodoList([...result.data.data].reverse());
         setTodoList([...result.data.data]);

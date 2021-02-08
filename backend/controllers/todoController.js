@@ -2,10 +2,9 @@ const Todo = require("../models/todoModel");
 
 //Get all todos
 exports.getAllTodos = async (req, res) => {
-  // const id = req.body.user.id;
-  console.log(req.body);
-  const todos = await Todo.find();
   try {
+    console.log(req.body);
+    const todos = await Todo.find(req.body).exec();
     res.status(200).json({
       status: "success",
       results: todos.length,

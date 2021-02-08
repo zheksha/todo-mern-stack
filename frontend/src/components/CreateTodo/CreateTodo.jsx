@@ -6,13 +6,14 @@ import jwt_decode from "jwt-decode";
 import axios from "axios";
 
 const CreateTodo = (props) => {
-  const decoded = jwt_decode(localStorage.getItem("token"));
+  const { user } = jwt_decode(localStorage.getItem("token"));
+  console.log(user.id);
 
   const [todo, setTodo] = useState({
+    todo_user: user.id,
     todo_description: "",
     todo_priority: "",
     todo_completed: false,
-    todo_user: decoded.user.id,
   });
 
   const [showToastWarning, setShowToastWarning] = useState(false);
@@ -37,7 +38,7 @@ const CreateTodo = (props) => {
     }
 
     axios
-      .post("http://localhost:4000/todos/", todo, {
+      .post("http://localhost:4000/todos/create", todo, {
         headers: {
           "x-auth-token": localStorage.getItem("token"),
         },
