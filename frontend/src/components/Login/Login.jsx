@@ -22,9 +22,10 @@ const Login = (props) => {
         user
       );
       console.log(data.token);
+      console.log(data.user);
       localStorage.setItem("token", data.token);
       setShowToastSuccess(true);
-      setTimeout(() => window.location.replace("/todos"), 500);
+      // setTimeout(() => window.location.replace("/todos"), 500);
     } catch (error) {
       console.error(error);
       setShowToastWarning(true);

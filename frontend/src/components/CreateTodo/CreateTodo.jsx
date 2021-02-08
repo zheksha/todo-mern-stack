@@ -2,13 +2,17 @@ import React, { useState } from "react";
 import { Input } from "../Utilities/Input";
 import { Select } from "../Utilities/Select";
 import { ToastWarning, ToastSuccess } from "../Utilities/Toast";
+import jwt_decode from "jwt-decode";
 import axios from "axios";
 
 const CreateTodo = (props) => {
+  const decoded = jwt_decode(localStorage.getItem("token"));
+
   const [todo, setTodo] = useState({
     todo_description: "",
     todo_priority: "",
     todo_completed: false,
+    todo_user: decoded.user.id,
   });
 
   const [showToastWarning, setShowToastWarning] = useState(false);
