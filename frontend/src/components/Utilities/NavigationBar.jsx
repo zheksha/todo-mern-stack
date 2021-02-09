@@ -5,7 +5,9 @@ export const NavigationBar = () => {
   const [token, setToken] = useState("");
 
   useEffect(() => {
-    setToken(localStorage.getItem("token"));
+    if (localStorage.getItem("token")) {
+      setToken(localStorage.getItem("token"));
+    }
   }, [token]);
 
   const removeToken = () => {
@@ -24,6 +26,7 @@ export const NavigationBar = () => {
       Log out <i className=" ml-1 fas fa-sign-out-alt" />
     </div>
   );
+
   return (
     <div>
       <nav className="navbar navbar-expand-md navbar-dark bg-primary">
@@ -46,17 +49,27 @@ export const NavigationBar = () => {
 
           <div>
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item mr-3">
-                <Link className="nav-link" to="/todos">
-                  <i className="fas fa-tasks mr-2"></i>All my tasks
-                  <span className="sr-only">(current)</span>
-                </Link>
-              </li>
-              <li className="nav-item mr-3">
-                <Link className="nav-link" to="/create">
-                  <i className="fas fa-plus-square mr-2"></i>Create new task
-                </Link>
-              </li>
+              {token ? (
+                <li className="nav-item mr-3">
+                  <Link className="nav-link" to="/todos">
+                    <i className="fas fa-tasks mr-2"></i>All my tasks
+                    <span className="sr-only">(current)</span>
+                  </Link>
+                </li>
+              ) : (
+                ""
+              )}
+
+              {token ? (
+                <li className="nav-item mr-3">
+                  <Link className="nav-link" to="/create">
+                    <i className="fas fa-plus-square mr-2"></i>Create new task
+                  </Link>
+                </li>
+              ) : (
+                ""
+              )}
+
               <li className="nav-item mr-3">
                 <Link className="nav-link" to="about">
                   About

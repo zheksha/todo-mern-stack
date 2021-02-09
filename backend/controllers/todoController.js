@@ -3,7 +3,6 @@ const Todo = require("../models/todoModel");
 //Get all todos
 exports.getAllTodos = async (req, res) => {
   try {
-    console.log(req.body);
     const todos = await Todo.find(req.body).exec();
     res.status(200).json({
       status: "success",

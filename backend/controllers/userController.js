@@ -16,10 +16,30 @@ exports.signUpNewUser = async (req, res) => {
     //set use password to new hashed password
     newUser.password = await bcrypt.hash(newUser.password, salt);
     await User.create(newUser);
-    res.status(201).json({
-      status: "success",
-      data: { name: newUser.name, email: newUser.email },
-    });
+
+    const payload = {
+      user: {
+        id: newUser.id,
+      },
+    };
+    jwt.sign(
+      payload,
+      process.env.JWT_SECRET,
+      { expiresIn: 360000 },
+      (error, token) => {
+        if (error) throw error;
+        res.status(200).json({
+          status: "success",
+          token: token,
+          user: [newUser.email, newUser.name],
+        });
+      }
+    );
+
+    // res.status(201).json({
+    //   status: "success",
+    //   data: { name: newUser.name, email: newUser.email },
+    // });
   } catch (error) {
     res.status(400).json({ status: "fail", message: "Invalid data sent" });
   }

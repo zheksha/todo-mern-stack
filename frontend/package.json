@@ -26,6 +26,11 @@
       "react-app/jest"
     ]
   },
+  "proxy": {
+    "/": {
+      "target": "http://localhost:4000"
+    }
+  },
   "browserslist": {
     "production": [
       ">0.2%",
