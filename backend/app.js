@@ -10,7 +10,11 @@ app.use(express.json());
 
 app.use(morgan("dev"));
 
-// app.use(cors());
+const corsOptions = {
+  origin: "*",
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
 app.use("/todos", todoRouter);
 app.use("/user", userRouter);

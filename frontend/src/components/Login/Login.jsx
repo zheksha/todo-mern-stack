@@ -17,8 +17,6 @@ const Login = (props) => {
 
   const onNewInputChange = (e) => {
     setNewUser({ ...newUser, [e.target.name]: e.target.value });
-    console.log(newUser);
-    console.log(user);
   };
 
   const fetchUserData = async (e) => {
@@ -85,7 +83,13 @@ const Login = (props) => {
         <div className="row">
           <div className="col-sm-6 bg-info p-0">
             <div className="card-header  text-white">
-              <h4>Login</h4>
+              <h4>
+                {" "}
+                <small>
+                  <i className="fas fa-door-open mr-2"></i>
+                </small>
+                <strong>Login</strong>
+              </h4>
             </div>
             <div className="card-body p-3">
               <div className="row mb-0 ">
@@ -94,7 +98,6 @@ const Login = (props) => {
                     id="email"
                     type="email"
                     name="email"
-                    label="Email"
                     placeholder="Please enter email"
                     required={true}
                     onChange={onInputChange}
@@ -104,7 +107,6 @@ const Login = (props) => {
                     id="password"
                     type="password"
                     name="password"
-                    label="Password"
                     placeholder="Please enter password"
                     onChange={onInputChange}
                     value={user.password}
@@ -121,7 +123,12 @@ const Login = (props) => {
 
           <div className="col-sm-6 bg-secondary p-0">
             <div className="card-header  text-dark">
-              <h4>Sign Up</h4>
+              <h4>
+                <small>
+                  <i className="fas fa-user-plus mr-2"></i>
+                </small>
+                <strong> Sign Up</strong>
+              </h4>
             </div>
             <div className="card-body p-3">
               <div className=" row  mb-0">
@@ -130,17 +137,16 @@ const Login = (props) => {
                     id="name"
                     type="name"
                     name="name"
-                    label="Name"
                     placeholder="Please enter name"
                     required={true}
                     onChange={onNewInputChange}
                     value={newUser.name}
                   />
+
                   <Input
                     id="email"
                     type="email"
                     name="email"
-                    label="Email"
                     placeholder="Please enter email"
                     required={true}
                     onChange={onNewInputChange}
@@ -150,7 +156,6 @@ const Login = (props) => {
                     id="password"
                     type="password"
                     name="password"
-                    label="Password"
                     placeholder="Please enter password"
                     onChange={onNewInputChange}
                     value={newUser.password}
