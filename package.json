@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/zheksha/todo-mern-stack/issues"
   },
-  "homepage": "https://github.com/zheksha/todo-mern-stack#readme"
+  "homepage": "https://github.com/zheksha/todo-mern-stack#readme",
+  "engines": {
+    "node": "4.15.0"
+  }
 }
