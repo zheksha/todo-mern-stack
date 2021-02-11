@@ -1,19 +1,17 @@
-import { LOGIN_USER } from "./usersTypes";
+import { LOGIN_USER, USER_ERROR } from "./usersTypes";
 import axios from "axios";
 
-export const loginUser = async (user) => {
-  let data = "";
+export const loginUser = async (user) => async (dispatch) => {
   try {
-    data = await axios.post("http://localhost:4000/user/login", user);
-    localStorage.setItem("token", data.token);
-
-    setTimeout(() => window.location.replace("/todos"), 500);
+    const res = await axios.post("http://localhost:4000/user/login", user);
+    dispatch({
+      type: LOGIN_USER,
+      payload: res.data,
+    });
   } catch (error) {
-    console.error(error);
+    dispatch({
+      type: USER_ERROR,
+      payload: console.log(error),
+    });
   }
-
-  return {
-    type: LOGIN_USER,
-    payload: { data },
-  };
 };

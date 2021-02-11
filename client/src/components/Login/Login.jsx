@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Input } from "../Utilities/Input";
-import axios from "axios";
-import "./login.styles.scss";
-import { ToastSuccess, ToastWarning } from "../Utilities/Toast";
 
-const Login = (props) => {
+import axios from "axios";
+
+import { Input } from "../Utilities/Input";
+import { ToastSuccess, ToastWarning } from "../Utilities/Toast";
+import "./login.styles.scss";
+
+const Login = ({ props }) => {
   const [user, setUser] = useState({ email: "", password: "", name: "" });
   const [newUser, setNewUser] = useState({ email: "", password: "", name: "" });
 
@@ -95,7 +97,7 @@ const Login = (props) => {
               <div className="row mb-0 ">
                 <div className="col-10 m-auto p-0 d-flex flex-column ">
                   <Input
-                    id="email"
+                    id="login_email"
                     type="email"
                     name="email"
                     placeholder="Please enter email"
@@ -104,7 +106,7 @@ const Login = (props) => {
                     value={user.email}
                   />
                   <Input
-                    id="password"
+                    id="login_password"
                     type="password"
                     name="password"
                     placeholder="Please enter password"

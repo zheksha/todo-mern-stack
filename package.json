@@ -1,0 +1,21 @@
+{
+  "name": "to-do-app-with-backend-v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd server && npm start",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zheksha/todo-mern-stack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zheksha/todo-mern-stack/issues"
+  },
+  "homepage": "https://github.com/zheksha/todo-mern-stack#readme"
+}
