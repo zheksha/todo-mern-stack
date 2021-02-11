@@ -22,11 +22,10 @@ const Login = ({ props }) => {
   };
 
   const fetchUserData = async (e) => {
-    console.log(window.location.hostname);
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        `http://${window.location.hostname}:4000/user/login`,
+        "http://localhost:4000/user/login",
         user
       );
 
