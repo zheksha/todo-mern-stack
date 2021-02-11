@@ -24,10 +24,7 @@ const Login = ({ props }) => {
   const fetchUserData = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(
-        "http://localhost:4000/user/login",
-        user
-      );
+      const { data } = await axios.post("/user/login", user);
 
       localStorage.setItem("token", data.token);
       setShowToastSuccess(true);
