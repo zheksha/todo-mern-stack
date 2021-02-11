@@ -36,7 +36,7 @@ const CreateTodo = (props) => {
     }
 
     axios
-      .post("http://localhost:4000/todos/create", todo, {
+      .post("/todos/create", todo, {
         headers: {
           "x-auth-token": localStorage.getItem("token"),
         },

@@ -24,7 +24,7 @@ const TodosList = (props) => {
     if (!mounted.current) {
       const fetchData = async () => {
         const result = await axios.post(
-          "http://localhost:4000/todos/",
+          "/todos/",
           JSON.stringify({ todo_user: user.id }),
           config
         );

@@ -38,10 +38,7 @@ const Login = ({ props }) => {
   const signUpNewUser = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(
-        "http://localhost:4000/user/signup",
-        newUser
-      );
+      const { data } = await axios.post("user/signup", newUser);
       localStorage.setItem("token", data.token);
       setShowToastSuccess(true);
       setTimeout(() => window.location.replace("/todos"), 500);

@@ -11,7 +11,7 @@ const TaskBlock = ({ todo, index }) => {
     }
 
     const updateDB = (todo) =>
-      axios.patch(`http://localhost:4000/todos/${todo._id}`, todo, {
+      axios.patch(`/todos/${todo._id}`, todo, {
         headers: {
           "x-auth-token": localStorage.getItem("token"),
         },

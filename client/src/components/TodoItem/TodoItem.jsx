@@ -24,7 +24,7 @@ export const TodoItem = (props) => {
     const id = props.match.params.id;
     const fetchCurrentTodo = async () => {
       try {
-        const result = await axios.get(`http://localhost:4000/todos/${id}`, {
+        const result = await axios.get(`/todos/${id}`, {
           headers: {
             "x-auth-token": localStorage.getItem("token"),
           },
@@ -58,15 +58,11 @@ export const TodoItem = (props) => {
     e.preventDefault();
     if (!currentTodo.todo_description || !currentTodo.todo_priority)
       return setShowToastWarning(true);
-    axios.patch(
-      `http://localhost:4000/todos/${props.match.params.id}`,
-      currentTodo,
-      {
-        headers: {
-          "x-auth-token": localStorage.getItem("token"),
-        },
-      }
-    );
+    axios.patch(`/todos/${props.match.params.id}`, currentTodo, {
+      headers: {
+        "x-auth-token": localStorage.getItem("token"),
+      },
+    });
 
     setShowToastSuccess(true);
     setTimeout(() => {
