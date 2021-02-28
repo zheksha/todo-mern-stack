@@ -40,21 +40,24 @@ const TodosList = (props) => {
 
   return (
     <div>
-      <p className="badge bg-warning">
-        <i className="fas fa-close mr-1"></i>Uncompleted Tasks
-      </p>
-
+      <div className="px-4 mt-2">
+        <p className="badge bg-warning">
+          <i className="fas fa-close mr-1"></i>Uncompleted Tasks
+        </p>
+      </div>
       {todoList.reverse().map((todo, index) => (
-        <div key={index}>
+        <div key={index} className="px-3">
           {!todo.todo_completed ? <TaskBlock todo={todo} /> : ""}
         </div>
       ))}
       <hr />
-      <p className="badge bg-success">
-        <i className="fas fa-check mr-1"></i>Completed Tasks
-      </p>
+      <div className="px-4 mt-2">
+        <p className="badge bg-success">
+          <i className="fas fa-check mr-1"></i>Completed Tasks
+        </p>
+      </div>
       {todoList.reverse().map((todo, index) => (
-        <div key={index}>
+        <div key={index} className="px-3">
           {todo.todo_completed ? <TaskBlock todo={todo} /> : ""}
         </div>
       ))}

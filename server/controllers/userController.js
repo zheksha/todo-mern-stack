@@ -25,7 +25,7 @@ exports.signUpNewUser = async (req, res) => {
     jwt.sign(
       payload,
       process.env.JWT_SECRET,
-      { expiresIn: 360000 },
+      { expiresIn: 3600 },
       (error, token) => {
         if (error) throw error;
         res.status(200).json({

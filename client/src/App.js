@@ -15,15 +15,17 @@ function App() {
   return (
     <Router>
       <NavigationBar />
-      <div className="container p-5">
-        <Route exact path="/">
-          {!token ? <Redirect to="/login" /> : <HomePage />}
-        </Route>
-        <Route path="/login" component={Login} />
-        <Route path="/todos" component={TodosList} />
-        <Route path="/edit/:id" component={TodoItem} />
-        <Route path="/create" component={CreateTodo} />
-        <Route path="/about" component={About} />
+      <div className="row p-md-5">
+        <div className="mx-auto col-md-10 col-sm-12">
+          <Route exact path="/">
+            {!token ? <Redirect to="/login" /> : <TodosList />}
+          </Route>
+          <Route path="/login" component={Login} />
+          <Route path="/todos" component={TodosList} />
+          <Route path="/edit/:id" component={TodoItem} />
+          <Route path="/create" component={CreateTodo} />
+          <Route path="/about" component={About} />
+        </div>
       </div>
     </Router>
   );
